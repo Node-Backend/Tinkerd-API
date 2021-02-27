@@ -1,15 +1,15 @@
 # Tinkerd-API
 
 ### Dependencies
-#### Express
+#### Express `npm i express`
 - framwork that sits on top of the raw http server module provided by Node.js and adds extra functionality, like routing and middleware support, and a simpler API.
 - used to write server side logic in JS
     
-#### Body Parser
+#### Body Parser `npm i body-parser`
 - Was apart of early verisons of Express but now you need to install the middleware module called body-parser
 - Handles HTTP POST request in Express, extracts the entire body portion of an incoming request stream and exposes it on req.body (parses the JSON string and URL encoded data submitted using HTTP POST request)
 
-#### Cors(Cross-Origin Resource Sharing)
+#### Cors(Cross-Origin Resource Sharing) `npm i cors`
 - XMLHttpRequest and fetch follows the same-origin policy so, JavaScript can only make calls to URLs that live on the same origin as the location where the script is running
 - Enables scripts running on a browser client to interact with resources from a different origin
 - Adds special headers to the request that can be used to determine that a request supports cors
@@ -34,4 +34,7 @@
     - Access-Control-Request-Method: The intended method of the request (e.g., GET or POST)
     - Access-Control-Request-Headers: An indication of the custom headers that will be sent with the request
     - Origin: The usual origin header that contains the script's current origin
+
+### Nodemon `npm i --save-dev nodemon`
+- Add start script to the scripts int the package.json file`"start": "node server.js"`
 
