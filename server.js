@@ -57,14 +57,19 @@ const sendUserError = (msg, res) => {
  
   let friendId = 7;
 
+
+//Gets the server message
   server.get("/", (req, res) => {
     res.json({message: "Welcome to the server"});
   });
 
+//Gets the entire friend list
   server.get("/friends", (req, res) => {
     res.json(friends);
   });
 
+
+//Gets Friend by ID
   server.get("/friendById/:id", (req, res) => {
     const { id } = req.params;
     const findFriendById = friend => {
@@ -77,6 +82,38 @@ const sendUserError = (msg, res) => {
       res.json(foundFriend);
     }
   });
+
+//Adds a friend to the list
+  server.post("/friends", (req, res) => {
+    const { name, age, email } = req.body;
+    const newFriend = {  id: friendId, name, age, email};
+    if (!name || !age || !email) {
+      return sendUserError(
+        "You forgot something! Name, Age, and Email are all required to create an friend in the friend DB.",
+        res
+      );
+    }
+    const findFriendByName = friend => {
+      return friend.name === name;
+    };
+    if (friends.find(findFriendByName)) {
+      return sendUserError(
+        `NO WAY!!!! ${name} already exists in the friend DB.`,
+        res
+      );
+    }
+  
+    friends.push(newFriend);
+    friendId++;
+    res.json(friends);
+  });
+
+
+
+
+
+
+
 
   server.listen(port, () => {
     console.log(`server listening on port ${port}`);
