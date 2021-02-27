@@ -55,7 +55,7 @@ const sendUserError = (msg, res) => {
   
 
  
-  let itemId = 7;
+  let friendId = 7;
 
   server.get("/", (req, res) => {
     res.json({message: "Welcome to the server"});
@@ -63,6 +63,19 @@ const sendUserError = (msg, res) => {
 
   server.get("/friends", (req, res) => {
     res.json(friends);
+  });
+
+  server.get("/friendById/:id", (req, res) => {
+    const { id } = req.params;
+    const findFriendById = friend => {
+      return friend.id == id;
+    };
+    const foundFriend = friends.find(findFriendById);
+    if (!foundFriend) {
+      return sendUserError("No Friend found by that ID", res);
+    } else {
+      res.json(foundFriend);
+    }
   });
 
   server.listen(port, () => {
