@@ -109,6 +109,24 @@ const sendUserError = (msg, res) => {
   });
 
 
+//Update friend
+server.put("/friends/:id", (req, res) => {
+    const { id } = req.params;
+    const { name, age, email } = req.body;
+    const findFriendById = friend => {
+      return friend.id == id;
+    };
+    const foundFriend = friends.find(findFriendById);
+    if (!foundFriend) {
+      return sendUserError("No Friend found with that ID", res);
+    } else {
+      if (name) foundFriend.name = name;
+      if (age) foundFriend.age = age;
+      if (email) foundFriend.email = email;
+      res.json(friends);
+    }
+  });
+
 
 
 
