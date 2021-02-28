@@ -36,5 +36,17 @@
     - Origin: The usual origin header that contains the script's current origin
 
 ### Nodemon `npm i --save-dev nodemon`
-- Add start script to the scripts int the package.json file`"start": "node server.js"`
+- Add start script to the scripts int the package.json file`"start": "nodemon server.js"` (server.js being thr file where the server is listening)
+- run `npm start` in terminal to start server
+______________________________________
 
+### Endpoints
+
+|   Method      |                 URL                     |        Function         |
+| ------------- |:---------------------------------------:|:-----------------------:|
+|     GET       |   http://localhost:5000                 | Gets the server message |
+|     GET       |   http://localhost:5000/friends         | Gets the firends list   |
+|     GET       |   http://localhost:5000/friendById/id   | Gets friend by id       |
+|     POST      |   http://localhost:5000/friends         | Adds a new friend       |
+|     PUT       |   http://localhost:5000/friends/id      | Updates friend          |
+|     DELETE    |   http://localhost:5000/friends/id      | Deletes Friend          |
