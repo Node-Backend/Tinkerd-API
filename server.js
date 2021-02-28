@@ -13,7 +13,7 @@ const sendUserError = (msg, res) => {
     return;
   };
 
-
+//Dummy data
   let friends = [
     {
       id: 1,
@@ -54,7 +54,7 @@ const sendUserError = (msg, res) => {
   ];
   
 
- 
+ //for adding new friends
   let friendId = 7;
 
 
@@ -71,11 +71,16 @@ const sendUserError = (msg, res) => {
 
 //Gets Friend by ID
   server.get("/friendById/:id", (req, res) => {
+      //Pulls the id off the url
     const { id } = req.params;
+
+    //finds the friend with that id
     const findFriendById = friend => {
       return friend.id == id;
     };
     const foundFriend = friends.find(findFriendById);
+
+    //if no friend with that id exists
     if (!foundFriend) {
       return sendUserError("No Friend found by that ID", res);
     } else {
@@ -85,14 +90,20 @@ const sendUserError = (msg, res) => {
 
 //Adds a friend to the list
   server.post("/friends", (req, res) => {
+      //Pulls name, age and email off the request body
     const { name, age, email } = req.body;
+
+    //adds the id(which is whatever is stored in the friendId variable), name, age and email to the newFriend variable
     const newFriend = {  id: friendId, name, age, email};
+
+    //if no name, age or email is added
     if (!name || !age || !email) {
       return sendUserError(
         "You forgot something! Name, Age, and Email are all required to create an friend in the friend DB.",
         res
       );
     }
+    //checks to see if the friend with that name already exixts
     const findFriendByName = friend => {
       return friend.name === name;
     };
@@ -103,8 +114,9 @@ const sendUserError = (msg, res) => {
       );
     }
   
+//add the newFriend to the friends list
     friends.push(newFriend);
-    friendId++;
+    friendId++;//add one to the friendId variable, so the next friend added does not have the same id
     res.json(friends);
   });
 
@@ -129,7 +141,7 @@ server.put("/friends/:id", (req, res) => {
     if (!foundFriend) {
       return sendUserError("No Friend found with that ID", res);
 
-      
+
     } else {
         //if friend found
       if (name) foundFriend.name = name;//update name
