@@ -40,13 +40,16 @@
 - run `npm start` in terminal to start server
 ______________________________________
 
+### Data
+**Has Dummy Data inside the server.js file**
+
 ### Endpoints
 
 |   Method      |                 URL                     |        Function         |
 | ------------- |:---------------------------------------:|:-----------------------:|
 |     GET       |   http://localhost:5000                 | Gets the server message |
-|     GET       |   http://localhost:5000/friends         | Gets the firends list   |
-|     GET       |   http://localhost:5000/friendById/id   | Gets friend by id       |
-|     POST      |   http://localhost:5000/friends         | Adds a new friend       |
-|     PUT       |   http://localhost:5000/friends/id      | Updates friend          |
-|     DELETE    |   http://localhost:5000/friends/id      | Deletes Friend          |
+|     GET       |   http://localhost:5000/tinkers         | Gets the tinkers list   |
+|     GET       |   http://localhost:5000/tinkerById/id   | Gets tinker by id       |
+|     POST      |   http://localhost:5000/tinkers         | Adds a new tinker       |
+|     PUT       |   http://localhost:5000/tinkers/id      | Updates tinker          |
+|     DELETE    |   http://localhost:5000/tinkers/id      | Deletes tinker          |
