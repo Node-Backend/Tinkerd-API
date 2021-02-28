@@ -111,23 +111,52 @@ const sendUserError = (msg, res) => {
 
 //Update friend
 server.put("/friends/:id", (req, res) => {
+    //pulls the id off of the url
     const { id } = req.params;
+
+    //pulls the name, age and email off of the body of the request
     const { name, age, email } = req.body;
+    
+    //finds the friend with the specified id and returns that id
     const findFriendById = friend => {
       return friend.id == id;
     };
+
+//
     const foundFriend = friends.find(findFriendById);
+
+    //if foundFriend is null
     if (!foundFriend) {
       return sendUserError("No Friend found with that ID", res);
+
+      
     } else {
-      if (name) foundFriend.name = name;
-      if (age) foundFriend.age = age;
-      if (email) foundFriend.email = email;
+        //if friend found
+      if (name) foundFriend.name = name;//update name
+      if (age) foundFriend.age = age;//update age
+      if (email) foundFriend.email = email;//update email
       res.json(friends);
     }
   });
 
 
+//Delete Friend
+server.delete("/friends/:id", (req, res) => {
+    //pulls the id off of the url
+    const { id } = req.params;
+
+    //finds the friend with the id from the pramas, and stores it in the foundFriend variable
+    const foundFriend = friends.find(friend => friend.id == id);
+  
+    if (foundFriend) { //if foundFriend is not null
+
+        //setting friends to all the firends in the list except the friend with the specified id
+      friends = friends.filter(friend => friend.id != id);
+      res.status(200).json(friends);
+    } else {
+      sendUserError("No friend by that ID exists in the friend DB", res);
+    }
+  });
 
 
 
